@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Home Dashboard</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script type="module" src="js/firebase.js"></script>
+    <script type="module" src="js/main.js"></script>
+    <script type="module" src="js/compression.js"></script>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>Smart Home Control</h1>
+            <button class="menu-btn" id="menu-btn">☰</button>
+        </div>
+        <nav id="main-nav">
+            <a href="index.html" class="active">Dashboard</a>
+            <a href="config.html">Configuration</a>
+            <a href="access.html">Access Control</a>
+            <a href="outdoor.html">Outdoor</a>
+        </nav>
+    </header>
+
+    <main>
+        <div class="status-container">
+            <h2>System Status</h2>
+            <div class="rooms-grid">
+                <div class="room-card" id="room1-card">
+                    <h3 id="room1-name">Living Room</h3>
+                    <div class="device-status">
+                        <div class="status-item">
+                            <span id="room1-light-label">Light:</span>
+                            <span id="room1-light-status">Off</span>
+                        </div>
+                        <div class="status-item">
+                            <span id="room1-ac-label">AC:</span>
+                            <span id="room1-ac-status">Off</span>
+                        </div>
+                        <div class="status-item">
+                            <span id="room1-tv-label">TV:</span>
+                            <span id="room1-tv-status">Off</span>
+                        </div>
+                        <div class="status-item">
+                            <span id="room1-blind-label">Blind:</span>
+                            <span id="room1-blind-status">Closed</span>
+                        </div>
+                        <div class="status-item">
+                            <span id="room1-socket-label">Socket:</span>
+                            <span id="room1-socket-status">Off</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="room-card" id="room2-card">
+                    <h3 id="room2-name">Bedroom</h3>
+                    <div class="device-status">
+                        <div class="status-item">
+                            <span id="room2-light-label">Light:</span>
+                            <span id="room2-light-status">Off</span>
+                        </div>
+                        <div class="status-item">
+                            <span id="room2-ac-label">AC:</span>
+                            <span id="room2-ac-status">Off</span>
+                        </div>
+                        <div class="status-item">
+                            <span id="room2-tv-label">TV:</span>
+                            <span id="room2-tv-status">Off</span>
+                        </div>
+                        <div class="status-item">
+                            <span id="room2-blind-label">Blind:</span>
+                            <span id="room2-blind-status">Closed</span>
+                        </div>
+                        <div class="status-item">
+                            <span id="room2-socket-label">Socket:</span>
+                            <span id="room2-socket-status">Off</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="room-card" id="room3-card">
+                    <h3 id="room3-name">Kitchen</h3>
+                    <div class="device-status">
+                        <div class="status-item">
+                            <span id="room3-light-label">Light:</span>
+                            <span id="room3-light-status">Off</span>
+                        </div>
+                        <div class="status-item">
+                            <span id="room3-ac-label">AC:</span>
+                            <span id="room3-ac-status">Off</span>
+                        </div>
+                        <div class="status-item">
+                            <span id="room3-tv-label">TV:</span>
+                            <span id="room3-tv-status">Off</span>
+                        </div>
+                        <div class="status-item">
+                            <span id="room3-blind-label">Blind:</span>
+                            <span id="room3-blind-status">Closed</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="outdoor-controls">
+            <h2>Outdoor Controls</h2>
+            <div class="outdoor-grid">
+                <div class="outdoor-card">
+                    <h3>Outdoor Light</h3>
+                    <div class="device-status">
+                        <div class="status-item">
+                            <span>Status:</span>
+                            <span id="outdoor-light-status">Off</span>
+                        </div>
+                        <div class="status-item">
+                            <span>Mode:</span>
+                            <span id="outdoor-light-mode">Manual</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="outdoor-card">
+                    <h3>Entrance Door</h3>
+                    <div class="device-status">
+                        <div class="status-item">
+                            <span>Status:</span>
+                            <span id="entrance-door-status">Locked</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div class="loading-overlay" id="loading-overlay">
+        <div class="loading-spinner"></div>
+    </div>
+</body>
+</html>

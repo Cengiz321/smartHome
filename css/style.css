@@ -1,0 +1,567 @@
+:root {
+    --primary: #4285F4;
+    --primary-dark: #3367D6;
+    --secondary: #34A853;
+    --accent: #EA4335;
+    --background: #f5f5f5;
+    --card: #ffffff;
+    --text: #333333;
+    --text-light: #757575;
+    --border: #e0e0e0;
+    --success: #00C853;
+    --warning: #FFAB00;
+    --error: #D50000;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', Arial, sans-serif;
+}
+
+body {
+    background-color: var(--background);
+    color: var(--text);
+    line-height: 1.6;
+    font-size: 16px;
+}
+
+header {
+    background-color: var(--primary);
+    color: white;
+    padding: 0.5rem 1rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.menu-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    display: block;
+}
+
+nav {
+    display: none;
+    flex-direction: column;
+    background-color: var(--primary-dark);
+}
+
+nav.show {
+    display: flex;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+nav a.active {
+    background-color: rgba(255,255,255,0.1);
+}
+
+main {
+    padding: 1rem;
+    max-width: 100%;
+}
+
+.status-container, .room-control, .config-page, .access-page, .outdoor-controls {
+    background-color: var(--card);
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.rooms-grid, .outdoor-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.room-card, .outdoor-card {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+}
+
+.room-card:active {
+    transform: scale(0.98);
+}
+
+.device-status {
+    margin-top: 0.5rem;
+}
+
+.status-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.control-section {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.section-title {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    color: var(--primary);
+}
+
+.control-group {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: var(--success);
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+.switch-label {
+    margin-left: 10px;
+    vertical-align: middle;
+}
+
+.slider-container, .select-container, .mode-container {
+    margin-top: 1rem;
+}
+
+input[type="range"] {
+    width: 100%;
+    margin-top: 0.5rem;
+}
+
+select {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    margin-top: 0.5rem;
+}
+
+.mode-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.mode-options input[type="radio"] {
+    display: none;
+}
+
+.mode-options label {
+    padding: 0.5rem 1rem;
+    background-color: #f0f0f0;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.mode-options input[type="radio"]:checked + label {
+    background-color: var(--primary);
+    color: white;
+}
+
+.tv-basic-controls {
+    margin-top: 1rem;
+}
+
+.tv-row {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.tv-btn {
+    flex: 1;
+    padding: 0.75rem;
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#tv-channel-input {
+    flex: 2;
+    text-align: center;
+    padding: 0.75rem;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+}
+
+.favorite-channels {
+    margin-top: 1.5rem;
+}
+
+.channels-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+    margin: 1rem 0;
+}
+
+.channel-btn {
+    padding: 0.75rem;
+    background-color: #f0f0f0;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.add-favorite {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.add-favorite input {
+    flex: 1;
+    padding: 0.75rem;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+}
+
+
+.control-btn {
+    padding: 0.75rem 1.5rem;
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+}
+
+.control-btn:hover {
+    background-color: var(--primary-dark);
+}
+
+.config-item {
+    margin-bottom: 1rem;
+}
+
+.config-item label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--text-light);
+}
+
+.config-item input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+}
+
+.save-btn, .add-btn {
+    width: 100%;
+    padding: 1rem;
+    background-color: var(--success);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-top: 1rem;
+    transition: background-color 0.3s;
+}
+
+.save-btn:hover, .add-btn:hover {
+    background-color: #00B34A;
+}
+
+.add-btn {
+    background-color: var(--primary);
+}
+
+.add-btn:hover {
+    background-color: var(--primary-dark);
+}
+
+.hidden {
+    display: none;
+}
+
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.loading-spinner {
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid var(--primary);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.room-config-item {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+.room-config-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.room-config-title {
+    font-weight: bold;
+}
+
+.remove-room-btn {
+    background-color: var(--accent);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 0.25rem 0.5rem;
+    cursor: pointer;
+}
+
+.device-checkboxes {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+.device-checkbox {
+    display: flex;
+    align-items: center;
+}
+
+.device-checkbox input {
+    margin-right: 0.5rem;
+}
+
+.plate-controls {
+    margin-top: 1rem;
+}
+
+.add-plate {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.add-plate input {
+    flex: 1;
+    padding: 0.75rem;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+}
+
+.add-plate select {
+    width: 150px;
+    padding: 0.75rem;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+}
+
+.plate-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    margin-bottom: 0.5rem;
+}
+
+.plate-number {
+    font-weight: bold;
+}
+
+.plate-access {
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+}
+
+.plate-access.granted {
+    background-color: var(--success);
+    color: white;
+}
+
+.plate-access.denied {
+    background-color: var(--accent);
+    color: white;
+}
+
+.remove-plate-btn {
+    background-color: var(--accent);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 0.25rem 0.5rem;
+    cursor: pointer;
+    margin-left: 0.5rem;
+}
+
+.logs-container {
+    max-height: 300px;
+    overflow-y: auto;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 0.5rem;
+    margin-top: 1rem;
+}
+
+.log-item {
+    padding: 0.5rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.log-item:last-child {
+    border-bottom: none;
+}
+
+.log-time {
+    color: var(--text-light);
+    font-size: 0.8rem;
+}
+
+.log-plate {
+    font-weight: bold;
+}
+
+.log-access {
+    font-weight: bold;
+}
+
+.log-access.granted {
+    color: var(--success);
+}
+
+.log-access.denied {
+    color: var(--accent);
+}
+.outdoor-controls {
+    margin-top: 2rem;
+}
+
+.outdoor-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.outdoor-card {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1rem;
+}
+
+@media (min-width: 768px) {
+    .outdoor-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 768px) {
+    .rooms-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .outdoor-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    nav {
+        display: flex;
+        flex-direction: row;
+        background-color: transparent;
+    }
+    
+    .menu-btn {
+        display: none;
+    }
+    
+    .device-checkboxes {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Living Room Control</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script type="module" src="js/firebase.js"></script>
+    <script type="module" src="js/room.js"></script>
+    <script type="module" src="js/compression.js"></script>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1 id="room-title">Living Room</h1>
+            <button class="menu-btn" id="menu-btn">☰</button>
+        </div>
+        <nav id="main-nav">
+            <a href="index.html">Dashboard</a>
+            <a href="config.html">Configuration</a>
+            <a href="access.html">Access Control</a>
+            <a href="outdoor.html">Outdoor</a>
+        </nav>
+    </header>
+
+    <main class="room-control">
+        <div class="control-section">
+            <h2 class="section-title" id="light-title">Light</h2>
+            <div class="control-group">
+                <label class="switch">
+                    <input type="checkbox" id="light-switch">
+                    <span class="slider round"></span>
+                </label>
+                <div id="brightness-control" class="hidden">
+                    <div class="slider-container">
+                        <label for="brightness-slider">Brightness: <span id="brightness-value">50</span>%</label>
+                        <input type="range" id="brightness-slider" min="0" max="100" value="50">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="control-section">
+            <h2 class="section-title" id="ac-title">Air Conditioner</h2>
+            <div class="control-group">
+                <label class="switch">
+                    <input type="checkbox" id="ac-switch">
+                    <span class="slider round"></span>
+                </label>
+                <div id="ac-controls" class="hidden">
+                    <div class="slider-container">
+                        <label for="ac-temp">Temp: <span id="ac-temp-value">22</span>°C</label>
+                        <input type="range" id="ac-temp" min="16" max="30" value="22">
+                    </div>
+                    <div class="select-container">
+                        <label for="ac-fan">Fan:</label>
+                        <select id="ac-fan">
+                            <option value="auto">Auto</option>
+                            <option value="low">Low</option>
+                            <option value="medium">Medium</option>
+                            <option value="high">High</option>
+                        </select>
+                    </div>
+                    <div class="mode-container">
+                        <label>Mode:</label>
+                        <div class="mode-options">
+                            <input type="radio" id="ac-mode-cool" name="ac-mode" value="cool" checked>
+                            <label for="ac-mode-cool">Cool</label>
+                            <input type="radio" id="ac-mode-heat" name="ac-mode" value="heat">
+                            <label for="ac-mode-heat">Heat</label>
+                            <input type="radio" id="ac-mode-dry" name="ac-mode" value="dry">
+                            <label for="ac-mode-dry">Dry</label>
+                            <input type="radio" id="ac-mode-fan" name="ac-mode" value="fan">
+                            <label for="ac-mode-fan">Fan</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="control-section">
+            <h2 class="section-title" id="tv-title">Television</h2>
+            <div class="control-group">
+                <label class="switch">
+                    <input type="checkbox" id="tv-switch">
+                    <span class="slider round"></span>
+                </label>
+                <div id="tv-controls" class="hidden">
+                    <div class="tv-basic-controls">
+                        <div class="tv-row">
+                            <button class="tv-btn" id="tv-vol-down">Vol -</button>
+                            <button class="tv-btn" id="tv-mute">Mute</button>
+                            <button class="tv-btn" id="tv-vol-up">Vol +</button>
+                        </div>
+                        <div class="tv-row">
+                            <button class="tv-btn" id="tv-ch-down">Ch -</button>
+                            <input type="number" id="tv-channel-input" min="1" max="999" value="1">
+                            <button class="tv-btn" id="tv-ch-up">Ch +</button>
+                        </div>
+                    </div>
+                    <div class="favorite-channels">
+                        <h3>Favorite Channels</h3>
+                        <div class="channels-grid" id="favorite-channels-list"></div>
+                        <div class="add-favorite">
+                            <input type="number" id="new-fav-channel" min="1" max="999" placeholder="Channel number">
+                            <input type="text" id="new-fav-name" placeholder="Channel name">
+                            <button class="tv-btn" id="add-favorite-btn">Add</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="control-section">
+            <h2 class="section-title" id="blind-title">Window Blind</h2>
+            <div class="control-group">
+                <label class="switch">
+                    <input type="checkbox" id="blind-switch">
+                    <span class="slider round"></span>
+                </label>
+                <div id="blind-control" class="hidden">
+                    <div class="slider-container">
+                        <label for="blind-slider">Open: <span id="blind-value">50</span>%</label>
+                        <input type="range" id="blind-slider" min="0" max="100" value="50">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="control-section">
+            <h2 class="section-title" id="socket-title">Power Socket</h2>
+            <div class="control-group">
+                <label class="switch">
+                    <input type="checkbox" id="socket-switch">
+                    <span class="slider round"></span>
+                </label>
+            </div>
+        </div>
+    </main>
+
+    <script type="module">
+        import { initRoomControls } from './js/room.js';
+        document.addEventListener('DOMContentLoaded', function() {
+            initRoomControls('room1');
+        });
+    </script>
+
+    <div class="loading-overlay" id="loading-overlay">
+        <div class="loading-spinner"></div>
+    </div>
+</body>
+</html>

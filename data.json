@@ -1,0 +1,176 @@
+{
+  "configuration": {
+    "deviceNames": {
+      "light": "Light",
+      "ac": "Air Conditioner",
+      "tv": "Television",
+      "blind": "Window Blind",
+      "socket": "Power Socket"
+    },
+    "outdoorNames": {
+      "light": "Outdoor Light",
+      "entranceDoor": "Entrance Door"
+    },
+    "roomNames": {
+      "room1": "Living Room",
+      "room2": "Bedroom",
+      "room3": "Kitchen"
+    },
+    "rooms": {
+      "room1": {
+        "name": "Living Room",
+        "devices": {
+          "light": true,
+          "ac": true,
+          "tv": true,
+          "blind": true,
+          "socket": true
+        }
+      },
+      "room2": {
+        "name": "Bedroom",
+        "devices": {
+          "light": true,
+          "ac": true,
+          "tv": true,
+          "blind": true,
+          "socket": true
+        }
+      },
+      "room3": {
+        "name": "Kitchen",
+        "devices": {
+          "light": true,
+          "ac": true,
+          "tv": true,
+          "blind": true,
+          "socket": false
+        }
+      }
+    }
+  },
+  "rooms": {
+    "room1": {
+      "light": {
+        "on": false,
+        "brightness": 50
+      },
+      "ac": {
+        "power": false,
+        "temperature": 22,
+        "fan": "auto",
+        "mode": "cool"
+      },
+      "tv": {
+        "power": false,
+        "channel": 1,
+        "volume": 50,
+        "muted": false,
+        "favorites": {
+          "fav1": {
+            "number": 1,
+            "name": "News"
+          },
+          "fav2": {
+            "number": 2,
+            "name": "Sports"
+          }
+        }
+      },
+      "blind": {
+        "on": false,
+        "level": 50
+      },
+      "socket": {
+        "on": false
+      }
+    },
+    "room2": {
+      "light": {
+        "on": false,
+        "brightness": 50
+      },
+      "ac": {
+        "power": false,
+        "temperature": 22,
+        "fan": "auto",
+        "mode": "cool"
+      },
+      "tv": {
+        "power": false,
+        "channel": 1,
+        "volume": 50,
+        "muted": false,
+        "favorites": {}
+      },
+      "blind": {
+        "on": false,
+        "level": 50
+      },
+      "socket": {
+        "on": false
+      }
+    },
+    "room3": {
+      "light": {
+        "on": false,
+        "brightness": 50
+      },
+      "ac": {
+        "power": false,
+        "temperature": 22,
+        "fan": "auto",
+        "mode": "cool"
+      },
+      "tv": {
+        "power": false,
+        "channel": 1,
+        "volume": 50,
+        "muted": false,
+        "favorites": {}
+      },
+      "blind": {
+        "on": false,
+        "level": 50
+      }
+    }
+  },
+  "outdoor": {
+    "light": {
+      "on": false,
+      "auto": false
+    },
+    "entranceDoor": {
+      "locked": true
+    }
+  },
+  "access": {
+    "barrier": {
+      "status": "closed",
+      "alwaysOpen": false,
+      "command": ""
+    },
+    "plates": {
+      "plate1": {
+        "number": "ABC123",
+        "access": "granted"
+      },
+      "plate2": {
+        "number": "XYZ789",
+        "access": "denied"
+      }
+    },
+    "logs": {
+      "log1": {
+        "timestamp": 1625097600000,
+        "plate": "ABC123",
+        "access": "granted"
+      },
+      "log2": {
+        "timestamp": 1625184000000,
+        "plate": "XYZ789",
+        "access": "denied"
+      }
+    }
+  }
+}

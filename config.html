@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configuration</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script type="module" src="js/config.js"></script>
+    <script type="module" src="js/compression.js"></script>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>Configuration</h1>
+            <button class="menu-btn" id="menu-btn">☰</button>
+        </div>
+        <nav id="main-nav">
+            <a href="index.html">Dashboard</a>
+            <a href="config.html" class="active">Configuration</a>
+            <a href="access.html">Access Control</a>
+        </nav>
+    </header>
+
+    <main class="config-page">
+        <div class="config-section">
+            <h2>Room Configuration</h2>
+            <div class="room-config-container" id="room-config-container">
+                <!-- Room config items will be added dynamically -->
+            </div>
+            <button id="add-room-btn" class="add-btn">+ Add Room</button>
+        </div>
+
+        <div class="config-section">
+            <h2>Device Names</h2>
+            <div class="config-item">
+                <label for="light-name">Light:</label>
+                <input type="text" id="light-name" placeholder="Default: Light">
+            </div>
+            <div class="config-item">
+                <label for="ac-name">Air Conditioner:</label>
+                <input type="text" id="ac-name" placeholder="Default: Air Conditioner">
+            </div>
+            <div class="config-item">
+                <label for="tv-name">Television:</label>
+                <input type="text" id="tv-name" placeholder="Default: Television">
+            </div>
+            <div class="config-item">
+                <label for="blind-name">Window Blind:</label>
+                <input type="text" id="blind-name" placeholder="Default: Window Blind">
+            </div>
+            <div class="config-item">
+                <label for="socket-name">Power Socket:</label>
+                <input type="text" id="socket-name" placeholder="Default: Power Socket">
+            </div>
+        </div>
+
+        <div class="config-section">
+            <h2>Outdoor Configuration</h2>
+            <div class="config-item">
+                <label for="outdoor-light-name">Outdoor Light Name:</label>
+                <input type="text" id="outdoor-light-name" placeholder="Default: Outdoor Light">
+            </div>
+            <div class="config-item">
+                <label for="entrance-door-name">Entrance Door Name:</label>
+                <input type="text" id="entrance-door-name" placeholder="Default: Entrance Door">
+            </div>
+        </div>
+
+        <button id="save-config" class="save-btn">Save Configuration</button>
+    </main>
+
+    <div class="loading-overlay" id="loading-overlay">
+        <div class="loading-spinner"></div>
+    </div>
+</body>
+</html>

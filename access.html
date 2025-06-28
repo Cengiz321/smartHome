@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Access Control</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script type="module" src="js/access.js"></script>
+    <script type="module" src="js/compression.js"></script>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>Access Control</h1>
+            <button class="menu-btn" id="menu-btn">☰</button>
+        </div>
+        <nav id="main-nav">
+            <a href="index.html">Dashboard</a>
+            <a href="config.html">Configuration</a>
+            <a href="access.html" class="active">Access Control</a>
+        </nav>
+    </header>
+
+    <main class="access-page">
+        <div class="access-section">
+            <h2>Entrance Barrier</h2>
+            <div class="control-group">
+                <button id="open-barrier-btn" class="control-btn">Open Barrier</button>
+                <label class="switch">
+                    <input type="checkbox" id="barrier-always-open">
+                    <span class="slider round"></span>
+                    <span class="switch-label">Always Open</span>
+                </label>
+            </div>
+            <div class="status-item">
+                <span>Current Status:</span>
+                <span id="barrier-status">Closed</span>
+            </div>
+        </div>
+
+        <div class="access-section">
+            <h2>License Plate Management</h2>
+            <div class="plate-controls">
+                <div class="add-plate">
+                    <input type="text" id="new-plate" placeholder="License plate number">
+                    <select id="plate-access">
+                        <option value="granted">Grant Access</option>
+                        <option value="denied">Deny Access</option>
+                    </select>
+                    <button id="add-plate-btn" class="control-btn">Add Plate</button>
+                </div>
+                <div class="plates-list" id="plates-list">
+                    <!-- License plates will be added here -->
+                </div>
+            </div>
+        </div>
+
+        <div class="access-section">
+            <h2>Access Logs</h2>
+            <div class="logs-container" id="access-logs">
+                <!-- Access logs will be added here -->
+            </div>
+        </div>
+    </main>
+
+    <div class="loading-overlay" id="loading-overlay">
+        <div class="loading-spinner"></div>
+    </div>
+</body>
+</html>

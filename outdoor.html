@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Outdoor Controls</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script type="module" src="js/firebase.js"></script>
+    <script type="module" src="js/outdoor.js"></script>
+    <script type="module" src="js/compression.js"></script>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>Outdoor Controls</h1>
+            <button class="menu-btn" id="menu-btn">☰</button>
+        </div>
+        <nav id="main-nav">
+            <a href="index.html">Dashboard</a>
+            <a href="config.html">Configuration</a>
+            <a href="access.html">Access Control</a>
+            <a href="outdoor.html" class="active">Outdoor</a>
+        </nav>
+    </header>
+
+    <main class="outdoor-controls">
+        <div class="control-section">
+            <h2 class="section-title" id="outdoor-light-title">Outdoor Light</h2>
+            <div class="control-group">
+                <label class="switch">
+                    <input type="checkbox" id="outdoor-light-switch">
+                    <span class="slider round"></span>
+                </label>
+                <div class="mode-container">
+                    <label>Mode:</label>
+                    <div class="mode-options">
+                        <input type="radio" id="outdoor-light-manual" name="outdoor-light-mode" value="manual" checked>
+                        <label for="outdoor-light-manual">Manual</label>
+                        <input type="radio" id="outdoor-light-auto" name="outdoor-light-mode" value="auto">
+                        <label for="outdoor-light-auto">Auto</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="control-section">
+            <h2 class="section-title" id="entrance-door-title">Entrance Door</h2>
+            <div class="control-group">
+                <button id="toggle-door-btn" class="control-btn">Unlock Door</button>
+                <div class="status-item">
+                    <span>Current Status:</span>
+                    <span id="door-status">Locked</span>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div class="loading-overlay" id="loading-overlay">
+        <div class="loading-spinner"></div>
+    </div>
+</body>
+</html>
