@@ -3,6 +3,8 @@ import { ref, set, onValue } from "https://www.gstatic.com/firebasejs/9.0.0/fire
 
 // Debug flag
 const DEBUG = true;
+// Barrier reset delay in milliseconds (configurable)
+const BARRIER_RESET_DELAY = 3000; // 3 seconds by default
 
 function logDebug(...messages) {
     if (DEBUG) {
@@ -31,6 +33,17 @@ function getSnapshot(ref) {
     });
 }
 
+// Function to reset barrier command after delay
+function resetBarrierCommand() {
+    const barrierRef = ref(database, 'access/barrier/command');
+    set(barrierRef, "").then(() => {
+        logDebug('Barrier command reset to empty string');
+    }).catch(error => {
+        console.error('Error resetting barrier command:', error);
+    });
+}
+
+// Modified updateKeys function with barrier reset logic
 async function updateKeys() {
     try {
         logDebug('Starting compression update...');
@@ -47,7 +60,14 @@ async function updateKeys() {
 
         logDebug('Retrieved data:', { rooms, outdoor, access });
 
-        // Compress Key1: Lights, blinds, outdoor light
+        // Check if barrier command is "open" and needs to be reset
+        const barrier = access.barrier || {};
+        if (barrier.command === 'open') {
+            logDebug('Barrier command is open, scheduling reset');
+            setTimeout(resetBarrierCommand, BARRIER_RESET_DELAY);
+        }
+
+        // Rest of the original updateKeys function remains the same
         let key1 = '';
         
         // Process lights for all rooms
@@ -76,7 +96,6 @@ async function updateKeys() {
         let key2 = '';
         
         // Process entrance barrier
-        const barrier = access.barrier || {};
         const barrierStatus = barrier.command === 'open' ? '1' : '0';
         const barrierAlwaysOpen = barrier.alwaysOpen ? '1' : '0';
         key2 += `<M${barrierStatus}${barrierAlwaysOpen}>`;
@@ -116,16 +135,6 @@ async function updateKeys() {
         logDebug('Generated keys:', { key1, key2 });
 
         // Update the compressed values in Firebase
-        const updates = {
-            'rooms/Key1': key1,
-            'rooms/Key2': key2
-        };
-        
-        /*await set(ref(database), updates);
-        logDebug('Successfully updated compressed keys');*/
-        /*set(ref(database), updates).catch(error => {
-        console.error('Error updating compressed values:', error);
-        });*/
         set(ref(database, 'rooms/Key1'), key1);
         set(ref(database, 'rooms/Key2'), key2);
         logDebug('Successfully updated compressed keys');
